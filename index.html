@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Quest - Kids Learning Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="loading-screen">
+            <div class="loading-content">
+                <div class="loading-logo">
+                    <i class="fas fa-compass"></i>
+                    <h1>Adventure Quest</h1>
+                </div>
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+                <p>Loading your adventure...</p>
+            </div>
+        </div>
+
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen hidden">
+            <div class="login-container">
+                <div class="login-header">
+                    <i class="fas fa-compass"></i>
+                    <h1>Adventure Quest</h1>
+                    <p>Embark on epic learning adventures!</p>
+                </div>
+                <div class="login-form">
+                    <div class="avatar-selector">
+                        <h3>Choose Your Avatar</h3>
+                        <div class="avatar-options">
+                            <div class="avatar-option selected" data-avatar="1">
+                                <img src="https://via.placeholder.com/60/FF6B6B/FFFFFF?text=👦" alt="Avatar 1">
+                            </div>
+                            <div class="avatar-option" data-avatar="2">
+                                <img src="https://via.placeholder.com/60/4ECDC4/FFFFFF?text=👧" alt="Avatar 2">
+                            </div>
+                            <div class="avatar-option" data-avatar="3">
+                                <img src="https://via.placeholder.com/60/45B7D1/FFFFFF?text=🦁" alt="Avatar 3">
+                            </div>
+                            <div class="avatar-option" data-avatar="4">
+                                <img src="https://via.placeholder.com/60/96CEB4/FFFFFF?text=🐰" alt="Avatar 4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="player-name" placeholder="Enter your name" maxlength="20">
+                    </div>
+                    <button id="start-game" class="btn-primary">
+                        <i class="fas fa-play"></i>
+                        Start Adventure
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Game Screen -->
+        <div id="game-screen" class="screen hidden">
+            <!-- Header -->
+            <header class="game-header">
+                <div class="header-left">
+                    <div class="player-info">
+                        <img id="player-avatar" src="https://via.placeholder.com/40/FF6B6B/FFFFFF?text=👦" alt="Avatar">
+                        <span id="player-name-display">Player</span>
+                    </div>
+                    <div class="coins-display">
+                        <i class="fas fa-coins"></i>
+                        <span id="coins-count">0</span>
+                    </div>
+                </div>
+                <div class="header-center">
+                    <h2 id="current-level">Jungle Adventure</h2>
+                </div>
+                <div class="header-right">
+                    <button id="menu-btn" class="btn-icon">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Game Content -->
+            <main class="game-content">
+                <!-- Level Map -->
+                <div id="level-map" class="level-map">
+                    <div class="map-container">
+                        <div class="level-card active" data-level="jungle">
+                            <div class="level-icon">🌴</div>
+                            <h3>Jungle Adventure</h3>
+                            <p>Explore the mysterious jungle</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 60%"></div>
+                            </div>
+                            <span class="progress-text">6/10 completed</span>
+                        </div>
+                        <div class="level-card" data-level="desert">
+                            <div class="level-icon">🏜️</div>
+                            <h3>Desert Quest</h3>
+                            <p>Survive the scorching desert</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 30%"></div>
+                            </div>
+                            <span class="progress-text">3/10 completed</span>
+                        </div>
+                        <div class="level-card locked" data-level="mountains">
+                            <div class="level-icon">⛰️</div>
+                            <h3>Mountain Peak</h3>
+                            <p>Climb to the highest peaks</p>
+                            <div class="lock-icon">🔒</div>
+                        </div>
+                        <div class="level-card locked" data-level="ocean">
+                            <div class="level-icon">🌊</div>
+                            <h3>Ocean Depths</h3>
+                            <p>Dive into the deep blue</p>
+                            <div class="lock-icon">🔒</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level Content -->
+                <div id="level-content" class="level-content hidden">
+                    <div class="story-container">
+                        <div class="story-header">
+                            <h2 id="story-title">The Thirsty Rabbit</h2>
+                            <div class="story-character">
+                                <img src="https://via.placeholder.com/80/FFB347/FFFFFF?text=🐰" alt="Rabbit">
+                            </div>
+                        </div>
+                        <div class="story-text">
+                            <p>Oh no! Little Rabbit is very thirsty in the hot desert. He found a well, but it's locked! Can you help him get water by solving challenges to find the key?</p>
+                        </div>
+                    </div>
+
+                    <div class="challenges-container">
+                        <h3>Available Challenges</h3>
+                        <div class="challenges-grid">
+                            <div class="challenge-card" data-challenge="math">
+                                <div class="challenge-icon">🧮</div>
+                                <h4>Math Puzzle</h4>
+                                <p>Solve: 8 + 5 = ?</p>
+                                <div class="challenge-reward">
+                                    <i class="fas fa-coins"></i>
+                                    <span>10 coins</span>
+                                </div>
+                                <button class="btn-challenge">Start</button>
+                            </div>
+                            <div class="challenge-card" data-challenge="reading">
+                                <div class="challenge-icon">📖</div>
+                                <h4>Reading Challenge</h4>
+                                <p>Read: "The brave rabbit hops quickly."</p>
+                                <div class="challenge-reward">
+                                    <i class="fas fa-coins"></i>
+                                    <span>15 coins</span>
+                                </div>
+                                <button class="btn-challenge">Start</button>
+                            </div>
+                            <div class="challenge-card" data-challenge="selfie">
+                                <div class="challenge-icon">📸</div>
+                                <h4>Sunshine Selfie</h4>
+                                <p>Take a selfie in the sunlight</p>
+                                <div class="challenge-reward">
+                                    <i class="fas fa-coins"></i>
+                                    <span>20 coins</span>
+                                </div>
+                                <button class="btn-challenge">Start</button>
+                            </div>
+                            <div class="challenge-card" data-challenge="friends">
+                                <div class="challenge-icon">👥</div>
+                                <h4>Group Photo</h4>
+                                <p>Take a photo with friends</p>
+                                <div class="challenge-reward">
+                                    <i class="fas fa-coins"></i>
+                                    <span>25 coins</span>
+                                </div>
+                                <button class="btn-challenge">Start</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Challenge Modal -->
+                <div id="challenge-modal" class="modal hidden">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 id="modal-title">Math Challenge</h3>
+                            <button class="close-btn">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="challenge-content">
+                                <!-- Challenge content will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Bottom Navigation -->
+            <nav class="bottom-nav">
+                <button class="nav-btn active" data-screen="map">
+                    <i class="fas fa-map"></i>
+                    <span>Map</span>
+                </button>
+                <button class="nav-btn" data-screen="friends">
+                    <i class="fas fa-users"></i>
+                    <span>Friends</span>
+                </button>
+                <button class="nav-btn" data-screen="shop">
+                    <i class="fas fa-store"></i>
+                    <span>Shop</span>
+                </button>
+                <button class="nav-btn" data-screen="leaderboard">
+                    <i class="fas fa-trophy"></i>
+                    <span>Leaderboard</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Friends Screen -->
+        <div id="friends-screen" class="screen hidden">
+            <div class="screen-header">
+                <h2>Friends & Groups</h2>
+                <button class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+            <div class="friends-content">
+                <div class="friends-section">
+                    <h3>My Friends</h3>
+                    <div class="friends-list">
+                        <div class="friend-item">
+                            <img src="https://via.placeholder.com/50/4ECDC4/FFFFFF?text=👧" alt="Friend">
+                            <div class="friend-info">
+                                <h4>Emma</h4>
+                                <p>Level 3 - Jungle</p>
+                            </div>
+                            <div class="friend-status online"></div>
+                        </div>
+                        <div class="friend-item">
+                            <img src="https://via.placeholder.com/50/45B7D1/FFFFFF?text=👦" alt="Friend">
+                            <div class="friend-info">
+                                <h4>Alex</h4>
+                                <p>Level 2 - Desert</p>
+                            </div>
+                            <div class="friend-status offline"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group-challenges">
+                    <h3>Group Challenges</h3>
+                    <div class="group-challenge">
+                        <h4>🏆 Weekly Photo Contest</h4>
+                        <p>Take the most creative photo with your friends!</p>
+                        <div class="challenge-progress">
+                            <span>3/5 friends joined</span>
+                            <button class="btn-primary">Join Challenge</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shop Screen -->
+        <div id="shop-screen" class="screen hidden">
+            <div class="screen-header">
+                <h2>Adventure Shop</h2>
+                <button class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+            <div class="shop-content">
+                <div class="shop-categories">
+                    <button class="category-btn active" data-category="abilities">Abilities</button>
+                    <button class="category-btn" data-category="collectibles">Collectibles</button>
+                    <button class="category-btn" data-category="cosmetics">Cosmetics</button>
+                </div>
+                <div class="shop-items">
+                    <div class="shop-item">
+                        <div class="item-icon">🏊</div>
+                        <h4>Swimming Ability</h4>
+                        <p>Unlock ocean levels</p>
+                        <div class="item-price">
+                            <i class="fas fa-coins"></i>
+                            <span>100</span>
+                        </div>
+                        <button class="btn-buy">Buy</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="item-icon">🦅</div>
+                        <h4>Flying Ability</h4>
+                        <p>Reach mountain peaks</p>
+                        <div class="item-price">
+                            <i class="fas fa-coins"></i>
+                            <span>150</span>
+                        </div>
+                        <button class="btn-buy">Buy</button>
+                    </div>
+                    <div class="shop-item">
+                        <div class="item-icon">🔨</div>
+                        <h4>Magic Hammer</h4>
+                        <p>Break through obstacles</p>
+                        <div class="item-price">
+                            <i class="fas fa-coins"></i>
+                            <span>75</span>
+                        </div>
+                        <button class="btn-buy">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard Screen -->
+        <div id="leaderboard-screen" class="screen hidden">
+            <div class="screen-header">
+                <h2>Leaderboards</h2>
+                <button class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+            <div class="leaderboard-content">
+                <div class="leaderboard-tabs">
+                    <button class="tab-btn active" data-tab="coins">Most Coins</button>
+                    <button class="tab-btn" data-tab="creative">Most Creative</button>
+                    <button class="tab-btn" data-tab="friends">Most Friends</button>
+                </div>
+                <div class="leaderboard-list">
+                    <div class="leaderboard-item top">
+                        <div class="rank">🥇</div>
+                        <img src="https://via.placeholder.com/40/FFD700/FFFFFF?text=👧" alt="Winner">
+                        <div class="player-info">
+                            <h4>Emma</h4>
+                            <p>Class 3A</p>
+                        </div>
+                        <div class="score">1,250 coins</div>
+                    </div>
+                    <div class="leaderboard-item">
+                        <div class="rank">🥈</div>
+                        <img src="https://via.placeholder.com/40/C0C0C0/FFFFFF?text=👦" alt="Runner-up">
+                        <div class="player-info">
+                            <h4>Alex</h4>
+                            <p>Class 3B</p>
+                        </div>
+                        <div class="score">1,180 coins</div>
+                    </div>
+                    <div class="leaderboard-item">
+                        <div class="rank">🥉</div>
+                        <img src="https://via.placeholder.com/40/CD7F32/FFFFFF?text=👧" alt="Third">
+                        <div class="player-info">
+                            <h4>Sophie</h4>
+                            <p>Class 3A</p>
+                        </div>
+                        <div class="score">1,050 coins</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
