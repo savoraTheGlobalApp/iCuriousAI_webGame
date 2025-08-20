@@ -37,16 +37,16 @@
                         <h3>Choose Your Avatar</h3>
                         <div class="avatar-options">
                             <div class="avatar-option selected" data-avatar="1">
-                                <img src="https://via.placeholder.com/60/FF6B6B/FFFFFF?text=👦" alt="Avatar 1">
+                                <div class="avatar-circle" style="background-color: #FF6B6B;">👦</div>
                             </div>
                             <div class="avatar-option" data-avatar="2">
-                                <img src="https://via.placeholder.com/60/4ECDC4/FFFFFF?text=👧" alt="Avatar 2">
+                                <div class="avatar-circle" style="background-color: #4ECDC4;">👧</div>
                             </div>
                             <div class="avatar-option" data-avatar="3">
-                                <img src="https://via.placeholder.com/60/45B7D1/FFFFFF?text=🦁" alt="Avatar 3">
+                                <div class="avatar-circle" style="background-color: #45B7D1;">🦁</div>
                             </div>
                             <div class="avatar-option" data-avatar="4">
-                                <img src="https://via.placeholder.com/60/96CEB4/FFFFFF?text=🐰" alt="Avatar 4">
+                                <div class="avatar-circle" style="background-color: #96CEB4;">🐰</div>
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
             <header class="game-header">
                 <div class="header-left">
                     <div class="player-info">
-                        <img id="player-avatar" src="https://via.placeholder.com/40/FF6B6B/FFFFFF?text=👦" alt="Avatar">
+                        <div id="player-avatar" class="player-avatar">👦</div>
                         <span id="player-name-display">Player</span>
                     </div>
                     <div class="coins-display">
@@ -79,8 +79,8 @@
                     <h2 id="current-level">Jungle Adventure</h2>
                 </div>
                 <div class="header-right">
-                    <button id="menu-btn" class="btn-icon">
-                        <i class="fas fa-bars"></i>
+                    <button id="back-to-map" class="btn-icon">
+                        <i class="fas fa-map"></i>
                     </button>
                 </div>
             </header>
@@ -123,17 +123,37 @@
                     </div>
                 </div>
 
+                <!-- 2D World View -->
+                <div id="world-view" class="world-view hidden">
+                    <div class="world-container">
+                        <div id="world-grid" class="world-grid">
+                            <!-- World tiles will be generated here -->
+                        </div>
+                        <div id="player" class="player">
+                            <div class="player-sprite">👦</div>
+                        </div>
+                        <div id="interaction-button" class="interaction-button hidden">
+                            <i class="fas fa-hand-pointer"></i>
+                        </div>
+                    </div>
+                    <div class="world-controls">
+                        <div class="control-hint">
+                            <p>Use arrow keys or WASD to move</p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Level Content -->
                 <div id="level-content" class="level-content hidden">
                     <div class="story-container">
                         <div class="story-header">
-                            <h2 id="story-title">The Thirsty Rabbit</h2>
+                            <h2 id="story-title">The Lost Monkey</h2>
                             <div class="story-character">
-                                <img src="https://via.placeholder.com/80/FFB347/FFFFFF?text=🐰" alt="Rabbit">
+                                <div class="character-sprite">🐒</div>
                             </div>
                         </div>
                         <div class="story-text">
-                            <p>Oh no! Little Rabbit is very thirsty in the hot desert. He found a well, but it's locked! Can you help him get water by solving challenges to find the key?</p>
+                            <p>A little monkey has lost his way in the jungle! Help him find his family by solving challenges and collecting bananas.</p>
                         </div>
                     </div>
 
@@ -153,7 +173,7 @@
                             <div class="challenge-card" data-challenge="reading">
                                 <div class="challenge-icon">📖</div>
                                 <h4>Reading Challenge</h4>
-                                <p>Read: "The brave rabbit hops quickly."</p>
+                                <p>Read: "The brave monkey swings quickly."</p>
                                 <div class="challenge-reward">
                                     <i class="fas fa-coins"></i>
                                     <span>15 coins</span>
@@ -162,8 +182,8 @@
                             </div>
                             <div class="challenge-card" data-challenge="selfie">
                                 <div class="challenge-icon">📸</div>
-                                <h4>Sunshine Selfie</h4>
-                                <p>Take a selfie in the sunlight</p>
+                                <h4>Jungle Selfie</h4>
+                                <p>Take a selfie with green background</p>
                                 <div class="challenge-reward">
                                     <i class="fas fa-coins"></i>
                                     <span>20 coins</span>
@@ -234,7 +254,7 @@
                     <h3>My Friends</h3>
                     <div class="friends-list">
                         <div class="friend-item">
-                            <img src="https://via.placeholder.com/50/4ECDC4/FFFFFF?text=👧" alt="Friend">
+                            <div class="friend-avatar" style="background-color: #4ECDC4;">👧</div>
                             <div class="friend-info">
                                 <h4>Emma</h4>
                                 <p>Level 3 - Jungle</p>
@@ -242,7 +262,7 @@
                             <div class="friend-status online"></div>
                         </div>
                         <div class="friend-item">
-                            <img src="https://via.placeholder.com/50/45B7D1/FFFFFF?text=👦" alt="Friend">
+                            <div class="friend-avatar" style="background-color: #45B7D1;">👦</div>
                             <div class="friend-info">
                                 <h4>Alex</h4>
                                 <p>Level 2 - Desert</p>
@@ -331,7 +351,7 @@
                 <div class="leaderboard-list">
                     <div class="leaderboard-item top">
                         <div class="rank">🥇</div>
-                        <img src="https://via.placeholder.com/40/FFD700/FFFFFF?text=👧" alt="Winner">
+                        <div class="leaderboard-avatar" style="background-color: #FFD700;">👧</div>
                         <div class="player-info">
                             <h4>Emma</h4>
                             <p>Class 3A</p>
@@ -340,7 +360,7 @@
                     </div>
                     <div class="leaderboard-item">
                         <div class="rank">🥈</div>
-                        <img src="https://via.placeholder.com/40/C0C0C0/FFFFFF?text=👦" alt="Runner-up">
+                        <div class="leaderboard-avatar" style="background-color: #C0C0C0;">👦</div>
                         <div class="player-info">
                             <h4>Alex</h4>
                             <p>Class 3B</p>
@@ -349,7 +369,7 @@
                     </div>
                     <div class="leaderboard-item">
                         <div class="rank">🥉</div>
-                        <img src="https://via.placeholder.com/40/CD7F32/FFFFFF?text=👧" alt="Third">
+                        <div class="leaderboard-avatar" style="background-color: #CD7F32;">👧</div>
                         <div class="player-info">
                             <h4>Sophie</h4>
                             <p>Class 3A</p>
@@ -362,5 +382,6 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="world.js"></script>
 </body>
 </html>
